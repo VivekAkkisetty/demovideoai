@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bill Law ela avtundi?</title>
+<style>
+  @font-face { font-family: 'Poppins'; font-weight: 800; src: url('/node_modules/@fontsource/poppins/files/poppins-latin-800-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-weight: 600; src: url('/node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2') format('woff2'); }
+  html, body { margin: 0; background: #0A2B2C; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Poppins', sans-serif; }
+  #bg1, #bg2, #vig, #hazeTop, #hazeBot { position: absolute; inset: 0; }
+  #bg1 { background: #0A2B2C; }
+  #bg2 { background: linear-gradient(180deg, #14595B 0%, #4A9A8F 30%, #E6B796 72%, #F5CBA3 100%); opacity: 0; }
+  canvas { position: absolute; inset: 0; }
+  #vig { background: radial-gradient(ellipse at 50% 48%, rgba(0,0,0,0) 55%, rgba(8,34,35,.38) 100%); pointer-events: none; }
+  #hazeTop, #hazeBot { pointer-events: none; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); }
+  #hazeTop { bottom: auto; height: 240px; -webkit-mask-image: linear-gradient(180deg,#000,transparent); mask-image: linear-gradient(180deg,#000,transparent); }
+  #hazeBot { top: auto; height: 300px; -webkit-mask-image: linear-gradient(0deg,#000,transparent); mask-image: linear-gradient(0deg,#000,transparent); }
+  .label { position: absolute; transform: translate(-50%, -100%); text-align: center; opacity: 0; white-space: nowrap; will-change: opacity; }
+  .label .main { font-weight: 800; font-size: 54px; letter-spacing: 1.5px; color: #fff; text-shadow: 0 3px 10px rgba(10,43,44,.65), 0 0 2px rgba(10,43,44,.8); }
+  .label .sub { font-weight: 600; font-size: 29px; margin-top: -2px; letter-spacing: .5px; text-shadow: 0 2px 8px rgba(10,43,44,.6); }
+  .chip { position: absolute; left: 50%; top: 150px; transform: translate(-50%, 0) scale(0); opacity: 0; padding: 14px 40px 14px 40px; border-radius: 60px; font-weight: 800; font-size: 58px; color: #fff; background: rgba(10,43,44,.62); border: 3px solid currentColor; text-shadow: 0 2px 6px rgba(0,0,0,.4); }
+  .chip b { font-weight: 800; }
+  #subs { position: absolute; left: 108px; width: 864px; top: 1560px; height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  #subs .line { font-weight: 800; font-size: 64px; line-height: 1.18; color: #fff; text-shadow: 0 4px 8px rgba(8,34,35,.6); -webkit-text-stroke: 9px rgba(8,38,40,.72); paint-order: stroke fill; }
+  #subs .w { opacity: .5; }
+  #subs .w.on { opacity: 1; }
+  #subs .w.key.on { color: #FF9933; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg1"></div><div id="bg2"></div>
+  <div id="vig"></div>
+  <div id="hazeTop"></div><div id="hazeBot"></div>
+  <div id="labels"></div>
+  <div class="chip" id="chipL" style="color:#FF9933">543 MPs</div>
+  <div class="chip" id="chipR" style="color:#B9A4F0">245 MPs</div>
+  <div id="subs"><div class="line" id="subline"></div></div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

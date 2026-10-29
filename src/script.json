@@ -1,0 +1,14 @@
+{
+  "title": "Bill Law ela avtundi?",
+  "lines": [
+    {"id": "hook",   "start": 0.45,  "roman": "Prathi *law* ki mundu, oka Bill untundi.",          "te": "ప్రతి లా కి ముందు, ఒక బిల్ ఉంటుంది."},
+    {"id": "idea",   "start": 4.60,  "roman": "Mundu *Ministry* ee Bill ni draft chestundi.",      "te": "ముందు మినిస్ట్రీ ఈ బిల్ ని డ్రాఫ్ట్ చేస్తుంది."},
+    {"id": "lok1",   "start": 10.05, "roman": "Tarvata *Lok Sabha* lo 543 MPs vote chestaru.",     "te": "తర్వాత లోక్ సభ లో ఐదు వందల నలభై మూడు ఎంపీలు వోట్ చేస్తారు."},
+    {"id": "lok2",   "start": 15.85, "roman": "Majority antey, Bill *pass*.",                      "te": "మెజారిటీ అంటే, బిల్ పాస్."},
+    {"id": "rajya1", "start": 18.55, "roman": "Adi *Rajya Sabha* ki velthundi.",                   "te": "అది రాజ్య సభ కి వెళ్తుంది."},
+    {"id": "rajya2", "start": 22.00, "roman": "Akkada kuda *review*, aa tarvata vote.",            "te": "అక్కడ కూడా రివ్యూ, ఆ తర్వాత వోట్."},
+    {"id": "pres",   "start": 26.80, "roman": "Last lo *President* sign chestaru.",                "te": "లాస్ట్ లో ప్రెసిడెంట్ సైన్ చేస్తారు."},
+    {"id": "law",    "start": 34.50, "roman": "Appudu aa Bill, ippudu *Law*!",                     "te": "అప్పుడు ఆ బిల్, ఇప్పుడు లా!"},
+    {"id": "outro",  "start": 40.45, "roman": "Inka ilanti *civics* kosam, follow cheyyandi.",     "te": "ఇంకా ఇలాంటి సివిక్స్ కోసం, ఫాలో చెయ్యండి."}
+  ]
+}

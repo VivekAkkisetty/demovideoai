@@ -1,0 +1,16 @@
+{
+  "name": "bill-law-ela-avtundi",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "45s 9:16 animated explainer reel: How a Bill becomes a Law (Tenglish)",
+  "scripts": {
+    "audio": "python3 tools/tts.py && python3 tools/mix.py",
+    "render": "node tools/render.mjs",
+    "mux": "bash tools/mux.sh"
+  },
+  "dependencies": {
+    "@fontsource/poppins": "5.1.0",
+    "three": "0.160.0"
+  }
+}
