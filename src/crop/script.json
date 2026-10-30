@@ -1,0 +1,61 @@
+{
+ "title": "How the government knows what crop is in your field",
+ "lines": [
+  {
+   "id": "hook",
+   "start": 0.4,
+   "roman": "Mee polam lo em panta undo, Delhi ki *telusu*. Ela?",
+   "te": "మీ పొలంలో ఏ పంట ఉందో, ఢిల్లీకి తెలుసు. ఎలా?",
+   "en": "The government knows which crop is in your field. How?"
+  },
+  {
+   "id": "survey",
+   "start": 4.5,
+   "roman": "Kotha *digital crop survey* lo, prathi plot ni record chestunnaru.",
+   "te": "కొత్త డిజిటల్ క్రాప్ సర్వేలో, ప్రతి ప్లాట్ ని రికార్డ్ చేస్తున్నారు.",
+   "en": "In the new digital crop survey, every plot is recorded."
+  },
+  {
+   "id": "photo",
+   "start": 10.0,
+   "roman": "Mee panta *photo*, location tho kalipi, registry loki velthundi.",
+   "te": "మీ పంట ఫోటో, లొకేషన్ తో కలిపి, రిజిస్ట్రీ లోకి వెళ్తుంది.",
+   "en": "Your crop photo, with its location, goes into a registry."
+  },
+  {
+   "id": "count",
+   "start": 16.3,
+   "roman": "Oka season lo *30 crore* kanna ekkuva plots.",
+   "te": "ఒక సీజన్ లో, ముప్పై కోట్ల కంటే ఎక్కువ ప్లాట్స్.",
+   "en": "In just one season, over 30 crore plots."
+  },
+  {
+   "id": "fraud",
+   "start": 22.6,
+   "roman": "Deeni tho loan, *insurance* lo mosalu aapochchu.",
+   "te": "దీనితో లోన్, ఇన్సూరెన్స్ లో మోసాలు ఆపొచ్చు.",
+   "en": "This helps stop fraud in loans and insurance."
+  },
+  {
+   "id": "id",
+   "start": 29.9,
+   "roman": "Plus oka *Farmer ID*, 10 crore kante ekkuva mandiki.",
+   "te": "ప్లస్ ఒక ఫార్మర్ ఐడి, పది కోట్ల కంటే ఎక్కువ మందికి.",
+   "en": "Plus a Farmer ID, for more than 10 crore farmers."
+  },
+  {
+   "id": "who",
+   "start": 37.4,
+   "roman": "Kani mee polam data *evaru chustaru*?",
+   "te": "కానీ మీ పొలం డేటా ఎవరు చూస్తారు?",
+   "en": "But who gets to see your field's data?"
+  },
+  {
+   "id": "next",
+   "start": 41.9,
+   "roman": "Next reel lo. *Follow* cheyyandi.",
+   "te": "నెక్స్ట్ రీల్ లో. ఫాలో చెయ్యండి.",
+   "en": "In the next reel. Follow!"
+  }
+ ]
+}

@@ -6,6 +6,7 @@ Two offline-rendered Instagram reels built with Three.js, rendered frame-by-fram
 |---|---|---|---|
 | Bill → Law | `src/index.html` | `src/script.json` | `out/bill-law-ela-avtundi.mp4` |
 | Switch ON → light | `src/power/index.html` | `src/power/script.json` | `out/switch-on-light-ela-vastundi.mp4` |
+| How the government knows your crop (HyperFrames) | `crop/index.html` (generated) | `src/crop/script.json` | `out/how-govt-knows-your-crop.mp4` |
 
 ## Pipeline (power reel)
 
@@ -31,3 +32,15 @@ bash tools/mux_power.sh                    # -> out/switch-on-light-ela-vastundi
 * `src/power/fx.js` – stateless GPU particle emitters.
 * `src/power/main.js` – camera path, post (bloom + grade/whip blur), HUD, subtitles.
 * `tools/synth.py`, `tools/mix_power.py` – sound design; SFX times mirror the scene events.
+
+## Crop-survey reel (HyperFrames project in `crop/`)
+
+A HyperFrames composition (HTML + paused GSAP timeline) whose 3D world is a bundled Three.js scene drawn from the `hf-seek` time. Sound effects only; voice is added later (`crop/VOICE_GUIDE.md`).
+
+```bash
+REEL=crop python3 tools/tts.py 168        # caption timing from the script (audio from this step is NOT used)
+python3 tools/mix_crop.py                 # SFX-only track -> crop/assets/crop-sfx.wav
+node crop/build.mjs && node crop/gen-index.mjs   # bundle src/crop/*.js, write crop/index.html
+cd crop && npx hyperframes snapshot --at 5,13,28   # look at frames
+npx hyperframes render -w 4 --crf 21 --max-bitrate 14M -o ../out/how-govt-knows-your-crop.mp4
+```

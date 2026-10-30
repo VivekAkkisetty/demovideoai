@@ -5,3 +5,10 @@ out
 frames_power
 __pycache__
 frames_test
+crop/lib/
+crop/assets/
+crop/.hyperframes/
+crop/renders/
+crop/node_modules/
+crop/compositions/
+crop/hyperframes.lock.json
