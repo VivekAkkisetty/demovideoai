@@ -7,7 +7,9 @@
   "scripts": {
     "audio": "python3 tools/tts.py && python3 tools/mix.py",
     "render": "node tools/render.mjs",
-    "mux": "bash tools/mux.sh"
+    "mux": "bash tools/mux.sh",
+    "dev": "npm --prefix reels run dev",
+    "build": "npm --prefix reels run build"
   },
   "dependencies": {
     "@fontsource/poppins": "5.1.0",
