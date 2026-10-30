@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="hyperframes" content="duration:24,fps:30,width:1920,height:1080">
+  <title>SIMATS CGPA Promo</title>
+  <!-- Built in the Null Motion template style (obsidian / silver / amber, paused GSAP timeline
+       exposed on window.__timelines.root so every frame is a pure function of time). -->
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --silver: #f4f4f6; --amber: #e8b768; --muted: rgba(244,244,246,.48); }
+    html, body { width: 1920px; height: 1080px; overflow: hidden; background: #040506; }
+    body { color: var(--silver); font-family: Inter, -apple-system, "Helvetica Neue", Arial, sans-serif; }
+    #root { position: absolute; inset: 0; overflow: hidden; perspective: 1400px;
+      background: radial-gradient(ellipse 70% 60% at 50% 52%, #12141a 0%, #07080a 55%, #030304 100%); }
+    .abs { position: absolute; }
+    .scene { position: absolute; inset: 0; opacity: 0; }
+    .atmos { left: 395px; top: 238px; width: 1130px; height: 610px; background: radial-gradient(ellipse at 51% 52%, rgba(232,183,104,.14) 0%, rgba(92,123,128,.07) 32%, rgba(4,8,10,0) 72%); filter: blur(10px); }
+    .grain { inset: 0; opacity: .05; background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.5) 0 1px, transparent 1px 3px); mix-blend-mode: overlay; pointer-events: none; }
+    .silver-text { background: linear-gradient(180deg, #fff 0%, #dedee2 44%, #999aa2 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mono { font: 560 15px/1 "JetBrains Mono", "SFMono-Regular", Consolas, monospace; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
+    .tick { display: inline-block; width: 22px; height: 1px; background: var(--amber); box-shadow: 0 0 16px rgba(232,183,104,.5); vertical-align: middle; margin-right: 14px; }
+    .mask { overflow: hidden; padding: 18px 4px 26px; display: inline-block; }
+    .mask > span { display: inline-block; will-change: transform, opacity, filter; }
+    .center { left: 50%; top: 50%; transform: translate(-50%, -50%); }
+    .obsidian { background: linear-gradient(180deg, rgba(42,42,47,.98) 0%, rgba(17,17,20,.99) 58%, rgba(7,7,9,.99) 100%); border: 1px solid rgba(255,255,255,.16); box-shadow: inset 0 2px rgba(255,255,255,.16), inset 0 -1px rgba(232,183,104,.14), 0 0 48px rgba(232,183,104,.10), 0 28px 60px rgba(0,0,0,.5); }
+    .sheen { position: absolute; top: -20%; left: -40%; width: 24%; height: 140%; opacity: 0; background: linear-gradient(105deg, transparent, rgba(255,255,255,.65), rgba(232,183,104,.3), transparent); transform: skewX(-16deg); }
+    .cursor { left: 0; top: 0; width: 46px; height: 46px; z-index: 20; }
+    .cursor svg { width: 100%; height: 100%; filter: drop-shadow(0 4px 10px rgba(0,0,0,.7)); }
+    .ripple { left: 50%; top: 50%; width: 40px; height: 40px; margin: -20px; border-radius: 50%; background: rgba(255,255,255,.22); transform: scale(0); }
+
+    /* 1 — headline */
+    #s1 .index { left: 50%; top: 318px; transform: translateX(-50%); white-space: nowrap; }
+    #s1 .head { left: 0; right: 0; top: 360px; text-align: center; font-size: 150px; font-weight: 800; letter-spacing: -.055em; line-height: .9; }
+    #s1 .pillwrap { left: 50%; top: 560px; transform: translateX(-50%); white-space: nowrap; }
+    #s1 .pill { position: relative; overflow: hidden; border-radius: 999px; padding: 26px 70px 32px; font-size: 92px; font-weight: 760; letter-spacing: -.045em; white-space: nowrap; }
+    #s1 .orbit { left: 529px; top: 302px; width: 862px; height: 462px; border: 1px solid rgba(244,244,246,.08); border-radius: 50%; transform: rotate(-6deg); }
+    #s1 .guide { left: 224px; top: 539px; width: 1472px; height: 1px; background: linear-gradient(90deg, transparent, rgba(244,244,246,.14) 16%, rgba(232,183,104,.32) 50%, rgba(244,244,246,.14) 84%, transparent); }
+
+    /* 2 — problem */
+    #s2 .stack { left: 0; right: 0; top: 270px; text-align: center; }
+    #s2 .row { position: relative; display: block; margin: 0 auto; width: max-content; font-size: 104px; font-weight: 760; letter-spacing: -.05em; line-height: 1.12; }
+    #s2 .strike { left: -16px; right: -16px; top: 56%; height: 6px; border-radius: 3px; background: var(--amber); box-shadow: 0 0 22px rgba(232,183,104,.55); transform: scaleX(0); transform-origin: left center; }
+    #s2 .answer { left: 0; right: 0; top: 470px; text-align: center; font-size: 140px; font-weight: 800; letter-spacing: -.055em; }
+    #s2 .answer em { font-style: normal; color: var(--amber); -webkit-text-fill-color: var(--amber); }
+
+    /* 3 — calculator */
+    #s3 .win { left: 410px; top: 150px; width: 1100px; height: 780px; border-radius: 34px; overflow: hidden; }
+    #s3 .bar { left: 0; right: 0; top: 0; height: 64px; border-bottom: 1px solid rgba(255,255,255,.08); }
+    #s3 .dot { top: 25px; width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.16); }
+    #s3 .url { left: 50%; top: 14px; transform: translateX(-50%); padding: 9px 26px; border-radius: 12px; background: rgba(255,255,255,.05); font: 500 19px/1.1 Inter, sans-serif; color: rgba(244,244,246,.7); white-space: nowrap; }
+    #s3 .url b { color: var(--amber); font-weight: 600; }
+    #s3 .title { left: 70px; top: 104px; font-size: 46px; font-weight: 760; letter-spacing: -.03em; }
+    #s3 .sem { right: 70px; top: 112px; padding: 10px 22px; border-radius: 999px; border: 1px solid rgba(232,183,104,.4); color: var(--amber); font: 600 20px/1 Inter, sans-serif; }
+    #s3 .cols { left: 70px; right: 70px; top: 196px; display: flex; }
+    #s3 .cols div { font: 600 15px/1 "JetBrains Mono", monospace; letter-spacing: .2em; color: rgba(244,244,246,.38); }
+    #s3 .r { left: 70px; right: 70px; height: 84px; border-radius: 20px; background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; padding: 0 28px; }
+    #s3 .r .name { flex: 1; font-size: 30px; font-weight: 600; letter-spacing: -.01em; }
+    #s3 .r .cr { width: 170px; font-size: 28px; font-weight: 500; color: rgba(244,244,246,.7); font-variant-numeric: tabular-nums; }
+    #s3 .r .gr { position: relative; width: 84px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-size: 30px; font-weight: 800; color: #1a1408; background: linear-gradient(180deg, #f6d9a2, #e8b768 55%, #b9874a); box-shadow: 0 0 26px rgba(232,183,104,.35), inset 0 1px rgba(255,255,255,.5); }
+    #s3 .btn { left: 70px; right: 70px; bottom: 54px; height: 96px; border-radius: 26px; overflow: hidden; display: grid; place-items: center; }
+    #s3 .btn span { font-size: 36px; font-weight: 760; letter-spacing: -.02em; }
+
+    /* 4 — result */
+    #s4 .ringwrap { left: 250px; top: 190px; width: 700px; height: 700px; }
+    #s4 svg.ring { width: 700px; height: 700px; transform: rotate(-90deg); }
+    #s4 .num { left: 0; right: 0; top: 230px; text-align: center; font-size: 190px; font-weight: 800; letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
+    #s4 .lbl { left: 0; right: 0; top: 200px; text-align: center; }
+    #s4 .sub { left: 0; right: 0; top: 460px; text-align: center; font-size: 28px; color: rgba(244,244,246,.62); }
+    #s4 .sub b { color: var(--amber); font-weight: 700; }
+    #s4 .chart { left: 1040px; top: 270px; width: 640px; height: 470px; }
+    #s4 .chart svg { width: 640px; height: 470px; overflow: visible; }
+    #s4 .ctitle { left: 1040px; top: 220px; }
+    #s4 .pt { width: 18px; height: 18px; margin: -9px; border-radius: 50%; background: #fff6df; box-shadow: 0 0 18px rgba(232,183,104,.8); }
+    #s4 .ptl { font: 600 22px/1 Inter, sans-serif; color: rgba(244,244,246,.8); transform: translate(-50%, -48px); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    #s4 .xl { font: 600 15px/1 "JetBrains Mono", monospace; letter-spacing: .15em; color: rgba(244,244,246,.38); transform: translateX(-50%); white-space: nowrap; }
+
+    /* 5 — three steps */
+    #s5 .h { left: 0; right: 0; top: 230px; text-align: center; font-size: 84px; font-weight: 800; letter-spacing: -.05em; }
+    #s5 .step { top: 450px; width: 440px; height: 220px; border-radius: 32px; padding: 40px 42px; }
+    #s5 .step .n { font: 600 18px/1 "JetBrains Mono", monospace; letter-spacing: .2em; color: var(--amber); }
+    #s5 .step .t { margin-top: 30px; font-size: 44px; font-weight: 760; letter-spacing: -.035em; line-height: 1.05; }
+    #s5 .link { top: 559px; height: 2px; width: 70px; background: linear-gradient(90deg, rgba(232,183,104,.2), var(--amber)); transform-origin: left center; }
+    #s5 .foot { left: 50%; top: 760px; transform: translateX(-50%); white-space: nowrap; }
+
+    /* 6 — CTA */
+    #s6 .lead { left: 0; right: 0; top: 290px; text-align: center; font-size: 76px; font-weight: 800; letter-spacing: -.05em; }
+    #s6 .ctaring { left: 50%; top: 600px; width: 940px; height: 270px; margin: -135px 0 0 -470px; border-radius: 60px; border: 1.5px solid rgba(255,255,255,.12); box-shadow: 0 0 60px rgba(190,190,210,.08) inset; }
+    #s6 .cta { left: 50%; top: 600px; transform: translate(-50%, -50%); padding: 40px 100px 46px; border-radius: 999px; overflow: hidden; white-space: nowrap; }
+    #s6 .cta span { position: relative; z-index: 2; font-size: 104px; font-weight: 800; letter-spacing: -.045em; }
+    #s6 .cta em { font-style: normal; background: linear-gradient(180deg, #fbe4b8, #e8b768 60%, #b9874a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #s6 .foot { left: 50%; top: 810px; transform: translateX(-50%); white-space: nowrap; }
+    #fade { inset: 0; background: #000; opacity: 0; z-index: 50; }
+  </style>
+</head>
+<body>
+<div id="root" data-composition-id="root" data-start="0" data-duration="24" data-width="1920" data-height="1080">
+  <div class="abs atmos" id="atmos"></div>
+
+  <!-- 1 · Headline -->
+  <section class="scene" id="s1">
+    <div class="abs orbit"></div>
+    <div class="abs guide"></div>
+    <div class="abs index mono"><i class="tick"></i>SIMATS · CGPA CALCULATOR</div>
+    <div class="abs head"><span class="mask"><span class="silver-text">Your</span></span> <span class="mask"><span class="silver-text">CGPA,</span></span></div>
+    <div class="abs pillwrap"><div class="pill obsidian"><span class="silver-text">in seconds.</span><div class="sheen"></div></div></div>
+  </section>
+
+  <!-- 2 · The problem -->
+  <section class="scene" id="s2">
+    <div class="abs stack">
+      <div class="row"><span class="silver-text">Credit math.</span><div class="abs strike"></div></div>
+      <div class="row"><span class="silver-text">Grade points.</span><div class="abs strike"></div></div>
+      <div class="row"><span class="silver-text">Guesswork.</span><div class="abs strike"></div></div>
+    </div>
+    <div class="abs answer"><span class="silver-text">Not <em>anymore.</em></span></div>
+  </section>
+
+  <!-- 3 · Calculator -->
+  <section class="scene" id="s3">
+    <div class="abs win obsidian">
+      <div class="abs bar">
+        <div class="abs dot" style="left:28px"></div><div class="abs dot" style="left:52px"></div><div class="abs dot" style="left:76px"></div>
+        <div class="abs url">🔒 <b>simatscgpa.in</b></div>
+      </div>
+      <div class="abs title silver-text">Add your courses</div>
+      <div class="abs sem">Semester 5</div>
+      <div class="abs cols"><div style="flex:1;padding-left:28px">COURSE</div><div style="width:170px">CREDITS</div><div style="width:112px">GRADE</div></div>
+      <div class="abs r" style="top:236px"><div class="name">Data Structures</div><div class="cr">4</div><div class="gr">S</div></div>
+      <div class="abs r" style="top:334px"><div class="name">Engineering Mathematics</div><div class="cr">4</div><div class="gr">A</div></div>
+      <div class="abs r" style="top:432px"><div class="name">Computer Networks</div><div class="cr">3</div><div class="gr">A</div></div>
+      <div class="abs r" style="top:530px"><div class="name">Operating Systems</div><div class="cr">3</div><div class="gr">B</div></div>
+      <div class="abs btn obsidian" style="border-color:rgba(232,183,104,.35)"><span class="silver-text">Calculate CGPA</span><div class="abs ripple"></div><div class="sheen"></div></div>
+    </div>
+    <div class="abs cursor" id="cur3"><svg viewBox="0 0 24 24"><path d="M4 2 4 20 9 15 12.5 22 15 21 11.5 14 18 14 Z" fill="#fff" stroke="#0a0a0a" stroke-width=".7" stroke-linejoin="round"/></svg></div>
+  </section>
+
+  <!-- 4 · Result -->
+  <section class="scene" id="s4">
+    <div class="abs ringwrap">
+      <svg class="ring" viewBox="0 0 700 700">
+        <defs><linearGradient id="amb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbe4b8"/><stop offset=".6" stop-color="#e8b768"/><stop offset="1" stop-color="#b9874a"/></linearGradient></defs>
+        <circle cx="350" cy="350" r="300" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="22"/>
+        <circle id="arc" cx="350" cy="350" r="300" fill="none" stroke="url(#amb)" stroke-width="22" stroke-linecap="round" stroke-dasharray="1885" stroke-dashoffset="1885" style="filter:drop-shadow(0 0 18px rgba(232,183,104,.5))"/>
+      </svg>
+      <div class="abs lbl mono">YOUR CGPA</div>
+      <div class="abs num silver-text" id="num">0.00</div>
+      <div class="abs sub">SGPA this semester <b id="sg">9.07</b></div>
+    </div>
+    <div class="abs ctitle mono"><i class="tick"></i>SEMESTER TREND</div>
+    <div class="abs chart">
+      <svg viewBox="0 0 640 470">
+        <defs>
+          <linearGradient id="sil" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8C8C90"/><stop offset=".5" stop-color="#D8D8DC"/><stop offset="1" stop-color="#e8b768"/></linearGradient>
+          <linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(232,183,104,.22)"/><stop offset="1" stop-color="rgba(232,183,104,0)"/></linearGradient>
+        </defs>
+        <line x1="0" y1="420" x2="640" y2="420" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
+        <line x1="0" y1="300" x2="640" y2="300" stroke="rgba(255,255,255,.05)" stroke-width="2"/>
+        <line x1="0" y1="180" x2="640" y2="180" stroke="rgba(255,255,255,.05)" stroke-width="2"/>
+        <path id="carea" d="M40 330 L180 258 L320 234 L460 210 L600 170 L600 420 L40 420 Z" fill="url(#area)" opacity="0"/>
+        <path id="curve" d="M40 330 L180 258 L320 234 L460 210 L600 170" fill="none" stroke="url(#sil)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="620" stroke-dashoffset="620" style="filter:drop-shadow(0 0 14px rgba(220,220,230,.4))"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 5 · Three steps -->
+  <section class="scene" id="s5">
+    <div class="abs h silver-text">Three steps. That's it.</div>
+    <div class="abs step obsidian" style="left:200px"><div class="n">01</div><div class="t silver-text">Add your<br>courses</div></div>
+    <div class="abs link" style="left:640px"></div>
+    <div class="abs step obsidian" style="left:740px"><div class="n">02</div><div class="t silver-text">Pick your<br>grades</div></div>
+    <div class="abs link" style="left:1180px"></div>
+    <div class="abs step obsidian" style="left:1280px;border-color:rgba(232,183,104,.4)"><div class="n">03</div><div class="t silver-text">Get your<br>CGPA</div></div>
+    <div class="abs foot mono"><i class="tick"></i>FAST · SIMPLE · BUILT FOR SIMATS STUDENTS</div>
+  </section>
+
+  <!-- 6 · CTA -->
+  <section class="scene" id="s6">
+    <div class="abs lead silver-text">Calculate yours now.</div>
+    <div class="abs ctaring"></div>
+    <div class="abs cta obsidian"><span class="silver-text">simatscgpa<em>.in</em></span><div class="abs ripple"></div><div class="sheen"></div></div>
+    <div class="abs foot mono"><i class="tick"></i>SIMATS CGPA CALCULATOR</div>
+    <div class="abs cursor" id="cur6"><svg viewBox="0 0 24 24"><path d="M4 2 4 20 9 15 12.5 22 15 21 11.5 14 18 14 Z" fill="#fff" stroke="#0a0a0a" stroke-width=".7" stroke-linejoin="round"/></svg></div>
+  </section>
+
+  <div class="abs grain"></div>
+  <div class="abs" id="fade"></div>
+</div>
+<script>
+  window.__timelines = window.__timelines || {};
+  const q = s => document.querySelector(s), qa = s => [...document.querySelectorAll(s)];
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'power4.out' } });
+
+  // scene windows [in, out]
+  const S = { s1: [0, 3.7], s2: [3.7, 7.5], s3: [7.5, 13.4], s4: [13.4, 17.8], s5: [17.8, 20.7], s6: [20.7, 24] };
+  for (const [id, [a, b]] of Object.entries(S)) {
+    tl.set('#' + id, { opacity: 1 }, a);
+    if (b < 24) tl.to('#' + id, { opacity: 0, scale: 1.04, filter: 'blur(14px)', duration: .42, ease: 'power2.in' }, b - .42);
+  }
+  tl.fromTo('#atmos', { scale: .84, opacity: .6 }, { scale: 1.12, opacity: 1, duration: 24, ease: 'none' }, 0);
+
+  // 1 · headline (kinetic-headline template)
+  tl.from('#s1 .orbit', { opacity: 0, scale: .8, rotation: -20, duration: 1.4, ease: 'expo.out' }, 0);
+  tl.to('#s1 .orbit', { rotation: 6, duration: 3.7, ease: 'none' }, 0);
+  tl.from('#s1 .guide', { scaleX: 0, opacity: 0, duration: 1, ease: 'expo.out' }, .1);
+  tl.from('#s1 .index', { opacity: 0, y: 10, duration: .6 }, .2);
+  tl.from('#s1 .mask > span', { yPercent: 110, opacity: 0, filter: 'blur(8px)', stagger: .12, duration: .8 }, .3);
+  tl.from('#s1 .pill', { y: 60, opacity: 0, rotationX: 50, scale: .9, duration: .9, ease: 'back.out(1.5)' }, .85);
+  tl.fromTo('#s1 .sheen', { x: 0, opacity: 1 }, { x: 900, opacity: 1, duration: 1, ease: 'power2.inOut' }, 1.5);
+  tl.to('#s1 .head, #s1 .pillwrap', { y: -10, duration: 2.4, ease: 'none' }, 1.3);
+
+  // 2 · problem — strike each line, then the answer
+  qa('#s2 .row').forEach((row, i) => {
+    tl.from(row, { opacity: 0, y: 40, filter: 'blur(10px)', duration: .55 }, 3.85 + i * .32);
+    tl.to(row.querySelector('.strike'), { scaleX: 1, duration: .32, ease: 'power3.inOut' }, 5.0 + i * .18);
+  });
+  tl.to('#s2 .stack', { opacity: .0, y: -120, scale: .9, filter: 'blur(10px)', duration: .5, ease: 'power3.in' }, 5.9);
+  tl.from('#s2 .answer', { opacity: 0, scale: .82, filter: 'blur(16px)', duration: .7, ease: 'expo.out' }, 6.3);
+
+  // 3 · calculator
+  tl.from('#s3 .win', { y: 120, opacity: 0, rotationX: 18, scale: .92, duration: 1.1, ease: 'expo.out' }, 7.55);
+  tl.from(['#s3 .title', '#s3 .sem', '#s3 .cols'], { opacity: 0, y: 14, stagger: .08, duration: .5 }, 8.0);
+  qa('#s3 .r').forEach((r, i) => {
+    const t0 = 8.4 + i * .55;
+    tl.from(r, { opacity: 0, x: -40, duration: .5 }, t0);
+    tl.from(r.querySelector('.gr'), { scale: 0, rotation: -25, duration: .45, ease: 'back.out(2.6)' }, t0 + .3);
+  });
+  tl.from('#s3 .btn', { opacity: 0, y: 20, duration: .5 }, 10.6);
+  tl.fromTo('#cur3', { x: 1560, y: 1000 }, { x: 980, y: 900, duration: 1.0, ease: 'power3.inOut' }, 11.0);
+  tl.to('#s3 .btn', { scale: .96, duration: .12, ease: 'power2.in' }, 12.05);
+  tl.to('#s3 .btn', { scale: 1, duration: .35, ease: 'back.out(2.2)' }, 12.17);
+  tl.fromTo('#s3 .btn .ripple', { scale: 0, opacity: .55 }, { scale: 30, opacity: 0, duration: .8, ease: 'power2.out' }, 12.1);
+  tl.fromTo('#s3 .btn .sheen', { x: 0, opacity: 1 }, { x: 1500, opacity: 1, duration: .8, ease: 'power2.inOut' }, 12.15);
+  tl.to('#s3 .win', { scale: 1.02, duration: 1.4, ease: 'none' }, 12.0);
+
+  // 4 · result — ring fills to 8.92/10, number counts up, trend line draws
+  const CGPA = 8.76, counter = { v: 0 };
+  tl.from('#s4 .ringwrap', { scale: .85, opacity: 0, duration: .8, ease: 'expo.out' }, 13.45);
+  tl.to('#arc', { attr: { 'stroke-dashoffset': 1885 * (1 - CGPA / 10) }, duration: 1.8, ease: 'power3.inOut' }, 13.6);
+  tl.to(counter, { v: CGPA, duration: 1.8, ease: 'power3.inOut', onUpdate: () => { q('#num').textContent = counter.v.toFixed(2); } }, 13.6);
+  tl.from('#s4 .lbl', { opacity: 0, y: 10, duration: .4 }, 13.7);
+  tl.from('#s4 .sub', { opacity: 0, y: 12, duration: .5 }, 15.2);
+  tl.from('#s4 .ctitle', { opacity: 0, x: -16, duration: .5 }, 14.1);
+  tl.to('#curve', { attr: { 'stroke-dashoffset': 0 }, duration: 1.7, ease: 'power2.inOut' }, 14.3);
+  tl.to('#carea', { opacity: 1, duration: .8, ease: 'power2.out' }, 15.4);
+  const pts = [[40, 330, '8.41', 'SEM 1'], [180, 258, '8.66', 'SEM 2'], [320, 234, '8.79', 'SEM 3'], [460, 210, '8.88', 'SEM 4'], [600, 170, '9.07', 'SEM 5']];
+  const chart = q('#s4 .chart');
+  pts.forEach(([x, y, v, s], i) => {
+    const p = document.createElement('div'); p.className = 'abs pt'; p.style.left = x + 'px'; p.style.top = y + 'px';
+    const l = document.createElement('div'); l.className = 'abs ptl'; l.style.left = x + 'px'; l.style.top = y + 'px'; l.textContent = v;
+    const xl = document.createElement('div'); xl.className = 'abs xl'; xl.style.left = x + 'px'; xl.style.top = '442px'; xl.textContent = s;
+    chart.append(p, l, xl);
+    const at = 14.3 + 1.7 * i / 4;
+    tl.from(p, { scale: 0, duration: .4, ease: 'back.out(3)' }, at);
+    tl.from(l, { opacity: 0, y: 8, duration: .35 }, at + .1);
+    tl.from(xl, { opacity: 0, duration: .3 }, 14.2 + i * .06);
+  });
+  tl.to('#s4 .ringwrap', { scale: 1.03, duration: 2.6, ease: 'none' }, 15.2);
+
+  // 5 · three steps
+  tl.from('#s5 .h', { opacity: 0, y: 30, filter: 'blur(10px)', duration: .6 }, 17.85);
+  qa('#s5 .step').forEach((s, i) => tl.from(s, { opacity: 0, y: 60, rotationX: 30, duration: .7, ease: 'back.out(1.4)' }, 18.1 + i * .38));
+  qa('#s5 .link').forEach((l, i) => tl.from(l, { scaleX: 0, duration: .35, ease: 'power2.out' }, 18.45 + i * .38));
+  tl.from('#s5 .foot', { opacity: 0, y: 10, duration: .5 }, 19.2);
+
+  // 6 · CTA (cta-click template)
+  tl.from('#s6 .lead', { opacity: 0, y: 30, filter: 'blur(10px)', duration: .6 }, 20.75);
+  tl.from('#s6 .cta', { y: 50, opacity: 0, scale: .92, duration: .8, ease: 'expo.out' }, 20.95);
+  tl.from('#s6 .ctaring', { opacity: 0, scale: .9, duration: .8, ease: 'expo.out' }, 21.05);
+  tl.from('#s6 .foot', { opacity: 0, y: 10, duration: .5 }, 21.4);
+  tl.fromTo('#cur6', { x: 1500, y: 980 }, { x: 1180, y: 640, duration: .9, ease: 'power3.inOut' }, 21.5);
+  tl.to('#s6 .cta', { scale: .95, duration: .12, ease: 'power2.in' }, 22.45);
+  tl.to('#s6 .cta', { scale: 1, duration: .35, ease: 'back.out(2.2)' }, 22.57);
+  tl.fromTo('#s6 .cta .ripple', { scale: 0, opacity: .5 }, { scale: 34, opacity: 0, duration: .8, ease: 'power2.out' }, 22.5);
+  tl.fromTo('#s6 .ctaring', { boxShadow: '0 0 60px rgba(190,190,210,.08) inset' }, { boxShadow: '0 0 90px rgba(232,183,104,.3) inset, 0 0 50px rgba(232,183,104,.25)', duration: .35, yoyo: true, repeat: 1 }, 22.5);
+  tl.fromTo('#s6 .cta .sheen', { x: 0, opacity: 1 }, { x: 1300, opacity: 1, duration: .9, ease: 'power2.inOut' }, 22.6);
+  tl.to('#fade', { opacity: 1, duration: .5, ease: 'power1.in' }, 23.5);
+  tl.to({}, { duration: 0 }, 24);
+
+  window.__timelines.root = tl;
+  if (location.hash === '#play') tl.play(0);
+</script>
+</body>
+</html>
