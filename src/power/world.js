@@ -365,7 +365,7 @@ export function buildWorld(scene) {
     W.rotor.rotation.x = L.turbineAngle(t);
     const tw = L.turbineW(t) / 26;
     W.genBands.forEach((m, i) => m.color.setRGB(0.2 + tw * 2.0, 0.1 + tw * 1.5, 0.05 + tw * 0.9).multiplyScalar(0.6 + tw * 1.6));
-    W.turbLight.intensity = tw * 45; W.stepupGlow.intensity = smooth(seg(t, 20.3, 21.4)) * (1 - smooth(seg(t, 21.6, 22.6))) * 220 + 20 * tw;
+    W.turbLight.intensity = tw * 28; W.stepupGlow.intensity = smooth(seg(t, 20.3, 21.4)) * (1 - smooth(seg(t, 21.6, 22.6))) * 220 + 20 * tw;
     // grid energy
     const grid = smooth(seg(t, 21.6, 23.2));
     let en = grid; if (t > 36.85 && t < L.RESTORE_T + 0.2) en = grid * (t < L.CUT_T ? 0.6 : 0.12) + (t >= L.RESTORE_T ? smooth(seg(t, L.RESTORE_T, L.RESTORE_T + 0.8)) * 0.9 : 0);
@@ -388,7 +388,7 @@ export function buildWorld(scene) {
       W.arc.visible = a1; const pos = W.arcGeo.attributes.position;
       for (let i = 0; i < 26; i++) { const u = i / 25; const j = (i === 0 || i === 25) ? 0 : 1.1; pos.setXYZ(i, lerp(W.arcA.x, W.arcB.x, u) + (hash(i + Math.floor(t * 30)) - 0.5) * j, lerp(W.arcA.y, W.arcB.y, u) + (hash(i * 3 + Math.floor(t * 30)) - 0.5) * j, lerp(W.arcA.z, W.arcB.z, u) + (hash(i * 7 + Math.floor(t * 30)) - 0.5) * j); }
       pos.needsUpdate = true;
-      W.subLight.intensity = smooth(seg(t, 26.6, 27.2)) * (1 - smooth(seg(t, 28.6, 29.6))) * 260 + (t > 27.15 && t < 27.55 ? 900 : 0);
+      W.subLight.intensity = 0;
     }
     // village power
     const vl = L.villageLit(t);
@@ -396,8 +396,8 @@ export function buildWorld(scene) {
     W.distWireMat.color.copy(mixc(new THREE.Color(0x1B2A32), new THREE.Color(0.9, 0.7, 0.35), vl * 0.8));
     W.ptLight.intensity = 0;
     const bi = L.bulbIntensity(t), flick = (t > 36.85 && t < L.CUT_T) ? 0.5 + 0.5 * Math.sin(t * 90) : 1;
-    W.bulbMat.color.setRGB(1.0 + 0.7 * bi * flick, 0.82 + 0.4 * bi * flick, 0.5 + 0.15 * bi * flick).multiplyScalar(0.18 + 0.82 * bi);
-    W.bulbHalo.material.opacity = 0.14 * bi * flick; W.bulbLight.intensity = 26 * bi * flick;
+    W.bulbMat.color.setRGB(1.0 + 0.7 * bi * flick, 0.82 + 0.4 * bi * flick, 0.5 + 0.15 * bi * flick).multiplyScalar((0.18 + 0.82 * bi) * (t < 4.2 ? 1 : 0.7));
+    W.bulbHalo.material.opacity = (t < 4.2 ? 0.14 : 0.07) * bi * flick; W.bulbLight.intensity = (t < 4.2 ? 26 : 14) * bi * flick;
     W.rocker.rotation.x = L.switchAngle(t);
     // beacons
     const lit = smooth(seg(t, 35.8, 36.6)), WB = 3 + L.WEAK;

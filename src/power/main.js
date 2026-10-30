@@ -11,6 +11,8 @@ import { Emitter } from './fx.js';
 
 const W = 1080, H = 1920, FPS = 30, DUR = 45;
 const V = L.V;
+// the orb glare is dimmed from ~16s on, once it is close to the camera and over bright surfaces
+const orbDim = t => 1 - 0.55 * smooth(seg(t, 15.5, 16.5));
 const bump = (t, a, b, c) => smooth(seg(t, a, b)) * (1 - smooth(seg(t, b, c)));
 
 // ---------- renderer / post ----------
@@ -77,7 +79,7 @@ E({ N: 45, life: 4, start: 34.7, end: 36.8, origin: [-6, 3.2, -298], vel: [0.05,
 // the orb trail needs a 4th origin component (scale) -> patch update to modulate alpha
 const trail = em.find(e => e.o.seed === 19);
 const baseUpdate = trail.update.bind(trail);
-trail.update = function (t) { baseUpdate(t); const o = this.o, N = o.N; for (let i = 0; i < N; i++) { const ph = (((t / o.life + i / N) % 1) + 1) % 1, tb = t - ph * o.life; this.a[i] *= Math.min(1, Math.max(0, L.orbScale(tb))); this.s[i] *= 1 + 0.6 * Math.max(0, L.orbScale(tb) - 1); } this.pts.geometry.attributes.aAlpha.needsUpdate = true; this.pts.geometry.attributes.aSize.needsUpdate = true; };
+trail.update = function (t) { baseUpdate(t); const o = this.o, N = o.N; for (let i = 0; i < N; i++) { const ph = (((t / o.life + i / N) % 1) + 1) % 1, tb = t - ph * o.life; this.a[i] *= Math.min(1, Math.max(0, L.orbScale(tb))) * orbDim(tb); this.s[i] *= 1 + 0.6 * Math.max(0, L.orbScale(tb) - 1); } this.pts.geometry.attributes.aAlpha.needsUpdate = true; this.pts.geometry.attributes.aSize.needsUpdate = true; };
 
 // ---------- post-processing ----------
 const rt = new THREE.WebGLRenderTarget(W, H, { type: THREE.HalfFloatType, samples: 4 });
@@ -197,12 +199,12 @@ function update(t) {
   world.update(t, V(l[0], l[1], l[2]));
 
   // orb
-  const op = L.orbPos(t), os = Math.max(0, L.orbScale(t)), oc = L.orbColor(t);
+  const op = L.orbPos(t), os = Math.max(0, L.orbScale(t)), oc = L.orbColor(t), ob = orbDim(t);
   orb.position.copy(op); orb.visible = os > 0.001;
   const col = new THREE.Color(oc[0], oc[1], oc[2]);
-  orbCore.material.color.copy(col).multiplyScalar(1.25); orbH1.material.color.copy(col).multiplyScalar(0.8); orbH2.material.color.copy(col);
-  orbRing1.material.color.copy(col).multiplyScalar(1.2); orbRing2.material.color.copy(col).multiplyScalar(1.0);
-  orbLight.color.copy(col); orbLight.intensity = 150 * os;
+  orbCore.material.color.copy(col).multiplyScalar(1.25 * ob); orbH1.material.color.copy(col).multiplyScalar(0.8 * ob * ob); orbH2.material.color.copy(col).multiplyScalar(ob * ob);
+  orbRing1.material.color.copy(col).multiplyScalar(1.2 * ob); orbRing2.material.color.copy(col).multiplyScalar(1.0 * ob);
+  orbLight.color.copy(col); orbLight.intensity = 150 * os * ob * ob;
   const pulse = 1 + 0.07 * Math.sin(t * 8);
   orb.scale.setScalar(Math.max(os, 1e-4) * 1.15 * pulse);
   orbRing1.rotation.set(t * 2.2, t * 1.1, 0); orbRing2.rotation.set(1.2, t * -1.7, t * 0.9);
@@ -211,10 +213,10 @@ function update(t) {
   em.forEach(e => e.update(t));
 
   // post
-  let flash = 0.5 * bump(t, 1.5, 1.56, 1.9) + 0.35 * bump(t, 34.62, 34.7, 35.2) + 0.25 * bump(t, 20.45, 20.5, 20.9) + 0.45 * bump(t, 27.15, 27.2, 27.5) - 0.28 * bump(t, 37.15, 37.2, 37.6);
+  let flash = 0.5 * bump(t, 1.5, 1.56, 1.9) + 0.1 * bump(t, 34.62, 34.7, 35.2) + 0.08 * bump(t, 20.45, 20.5, 20.9) + 0.12 * bump(t, 27.15, 27.2, 27.5) - 0.28 * bump(t, 37.15, 37.2, 37.6);
   grade.uniforms.uTime.value = t * 7.3; grade.uniforms.uBlur.value = whip; grade.uniforms.uAb.value = Math.min(1.2, whip * 1.3 + sh * 0.4);
   grade.uniforms.uFlash.value = flash * 0.55;
-  bloom.strength = 0.6 + 0.5 * Math.max(0, flash) + 0.25 * whip;
+  bloom.strength = 0.6 + 0.5 * Math.max(0, flash) * (t < 10 ? 1 : 0.3) + 0.25 * whip;
   flashEl.style.opacity = Math.max(0, flash) * 0.0;
   speedEl.style.opacity = Math.min(1, whip * 0.55); speed2El.style.opacity = Math.min(1, whip * 0.4);
   speedEl.style.transform = `rotate(${t * 40}deg) scale(${1 + whip * 0.5})`; speed2El.style.transform = `rotate(${-t * 55}deg) scale(${1 + whip * 0.7})`;
