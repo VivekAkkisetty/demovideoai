@@ -1,26 +1,95 @@
 {
-  "language": "te+en",
+  "language": "te-Latn (Tenglish)",
   "words": [
-    { "text": "సముద్రం", "start": 0.4, "end": 1.1 },
-    { "text": "అడుగున", "start": 1.1, "end": 1.9 },
-    { "text": "బ్రిడ్జ్", "start": 1.9, "end": 2.7 },
-    { "text": "పునాది", "start": 2.7, "end": 3.5 },
-    { "text": "ఎలా", "start": 3.5, "end": 4.1 },
-    { "text": "వేస్తారు?", "start": 4.1, "end": 4.9 },
-
-    { "text": "First", "start": 5.3, "end": 5.7 },
-    { "text": "steel", "start": 5.7, "end": 6.2 },
-    { "text": "sheet", "start": 6.2, "end": 6.7 },
-    { "text": "piles", "start": 6.7, "end": 7.3 },
-    { "text": "sink", "start": 7.3, "end": 7.9 },
-    { "text": "into", "start": 7.9, "end": 8.3 },
-    { "text": "the", "start": 8.3, "end": 8.5 },
-    { "text": "seabed", "start": 8.5, "end": 9.4 },
-
-    { "text": "పంపులు", "start": 10.2, "end": 10.9 },
-    { "text": "నీళ్లను", "start": 10.9, "end": 11.6 },
-    { "text": "తోడేస్తాయి", "start": 11.6, "end": 12.5 },
-    { "text": "Cofferdam", "start": 12.9, "end": 13.8 },
-    { "text": "ready!", "start": 13.8, "end": 14.7 }
+    {
+      "text": "Samudram",
+      "start": 0.4,
+      "end": 1.1
+    },
+    {
+      "text": "lo",
+      "start": 1.1,
+      "end": 1.5
+    },
+    {
+      "text": "bridge",
+      "start": 1.5,
+      "end": 2.3
+    },
+    {
+      "text": "pillar",
+      "start": 2.3,
+      "end": 3.1
+    },
+    {
+      "text": "ela",
+      "start": 3.5,
+      "end": 4.1
+    },
+    {
+      "text": "kadataru?",
+      "start": 4.1,
+      "end": 4.9
+    },
+    {
+      "text": "Mundu",
+      "start": 5.3,
+      "end": 5.7
+    },
+    {
+      "text": "steel",
+      "start": 5.7,
+      "end": 6.2
+    },
+    {
+      "text": "sheet",
+      "start": 6.2,
+      "end": 6.7
+    },
+    {
+      "text": "piles",
+      "start": 6.7,
+      "end": 7.3
+    },
+    {
+      "text": "seabed",
+      "start": 7.3,
+      "end": 8.1
+    },
+    {
+      "text": "loki",
+      "start": 8.1,
+      "end": 8.6
+    },
+    {
+      "text": "digutayi",
+      "start": 8.6,
+      "end": 9.4
+    },
+    {
+      "text": "Pumps",
+      "start": 10.2,
+      "end": 10.9
+    },
+    {
+      "text": "neellu",
+      "start": 10.9,
+      "end": 11.6
+    },
+    {
+      "text": "thodestayi",
+      "start": 11.6,
+      "end": 12.5
+    },
+    {
+      "text": "Cofferdam",
+      "start": 12.9,
+      "end": 13.8
+    },
+    {
+      "text": "ready!",
+      "start": 13.8,
+      "end": 14.7
+    }
   ]
 }

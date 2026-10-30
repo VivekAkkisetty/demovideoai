@@ -209,7 +209,7 @@ const Scene: React.FC = () => {
         position={[0, -3.2, 0.8]}
         target={[0, FLOOR_Y + 0.12, 0]}
         title="Cofferdam"
-        subtitle="కాఫర్‌డ్యామ్"
+        subtitle="Pillar ki pakka base"
         startFrame={402}
         width={7.6}
       />
