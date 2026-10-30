@@ -5,16 +5,19 @@
   "description": "Remotion + React Three Fiber pipeline for 9:16 low-poly educational reels",
   "scripts": {
     "dev": "remotion studio src/index.ts",
-    "build": "remotion render src/index.ts UnderseaBridgeDemo out/undersea-bridge.mp4",
-    "still": "remotion still src/index.ts UnderseaBridgeDemo out/still.png --frame=300",
+    "build": "remotion render src/index.ts AirplaneOxygen out/airplane-oxygen.mp4",
+    "build:undersea": "remotion render src/index.ts UnderseaBridgeDemo out/undersea-bridge.mp4",
+    "still": "remotion still src/index.ts AirplaneOxygen out/still.png --frame=300",
+    "prep:audio": "node scripts/prep-audio.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@fontsource/noto-sans-telugu": "^5.3.0",
     "@fontsource/poppins": "^5.1.0",
-    "@react-three/drei": "9.122.0",
+    "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "8.18.0",
     "@remotion/cli": "4.0.539",
+    "@remotion/media-utils": "^4.0.539",
     "@remotion/three": "4.0.539",
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",

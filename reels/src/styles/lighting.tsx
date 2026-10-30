@@ -1,6 +1,6 @@
 import React from "react";
 
-type StudioLightingProps = {
+export type StudioLightingProps = {
   /** Sun direction (also shadow origin). */
   sunPosition?: [number, number, number];
   sunIntensity?: number;

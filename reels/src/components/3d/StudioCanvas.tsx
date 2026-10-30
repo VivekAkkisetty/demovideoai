@@ -1,7 +1,7 @@
 import React from "react";
 import { ThreeCanvas } from "@remotion/three";
 import { useVideoConfig } from "remotion";
-import { StudioLighting } from "../../styles/lighting";
+import { StudioLighting, type StudioLightingProps } from "../../styles/lighting";
 
 /**
  * Standard canvas: soft shadows, sRGB, ACES-ish tone mapping, studio lights.
@@ -10,8 +10,9 @@ import { StudioLighting } from "../../styles/lighting";
  */
 export const StudioCanvas: React.FC<{
   projection?: "perspective" | "orthographic";
+  lighting?: StudioLightingProps;
   children: React.ReactNode;
-}> = ({ projection = "perspective", children }) => {
+}> = ({ projection = "perspective", lighting, children }) => {
   const { width, height } = useVideoConfig();
   const ortho = projection === "orthographic";
   return (
@@ -27,7 +28,7 @@ export const StudioCanvas: React.FC<{
       }
       gl={{ antialias: true, toneMapping: 4 /* ACESFilmic */ }}
     >
-      <StudioLighting />
+      <StudioLighting {...lighting} />
       {children}
     </ThreeCanvas>
   );

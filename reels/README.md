@@ -5,7 +5,8 @@ Programmatic 3D explainer reels (1080×1920, 30 fps) in a low-poly style.
 ```bash
 cd reels && npm install
 npm run dev      # Remotion Studio (browser preview)
-npm run build    # -> out/undersea-bridge.mp4
+npm run build    # -> out/airplane-oxygen.mp4 (AirplaneOxygen reel)
+npm run build:undersea   # -> out/undersea-bridge.mp4
 npm run still    # one PNG for quick checks
 ```
 (`npm run dev` / `npm run build` also work from the repo root.)
@@ -39,3 +40,12 @@ On GPU-less machines (CI, containers) render with software GL:
 ## Audio
 
 Set `voiceoverSrc` in `src/Root.tsx` (`staticFile("audio/vo.mp3")`) and fill `src` for slots in `src/audio/undersea-slots.ts`.
+
+## AirplaneOxygen reel (How emergency oxygen masks work)
+
+* Audio: `public/voiceover.mp3`. Swap in a new voiceover with `npm run prep:audio -- path/to/voice.mp4` (needs `ffmpeg`); it rewrites the mp3 and `src/data/airplane-oxygen.timing.json` (duration + detected pauses).
+* Length: `calculateMetadata` in `src/Root.tsx` reads the mp3, so the composition always matches the audio.
+* Scene cues (`src/airplane/timeline.ts`): the brief's times (6 / 14 / 23 / 32 / 40 s) snap to the nearest narration pause within 2 s. The camera path and every animation beat key off `T` / `MECH`.
+* Subtitles: edit `TRANSCRIPT` in `timeline.ts`. Paragraphs are anchored to the speech windows between pauses and words are spread by length, so timing is approximate. Replace `WORDS` with forced-aligner output for exact karaoke sync.
+* Models: `src/airplane/Plane.tsx` (cutaway cabin, seats, airliner), `Oxygen.tsx` (canister, firing pin, tube, mask, particles), `Badge.tsx` (drei `<Html>` pills).
+* Headless/CI render: `npm run build -- --gl=swangle` (add `--browser-executable=<chromium>` if Remotion can't download its own).
