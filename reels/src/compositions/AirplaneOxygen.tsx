@@ -32,11 +32,11 @@ const Scene: React.FC = () => (
     <CameraRig keyframes={CAMERA} sway={0.05}>
       <Clouds />
       <Airliner />
-      <FloatingBadge position={[-2.6, 4.6, 0.6]} target={[-1.6, 2.2, 0.3]} from={0.9} to={5.8} label="35,000 FT" sub="ALTITUDE" size={44} />
+      <FloatingBadge position={[-2.6, 4.6, 0.6]} target={[-1.6, 2.2, 0.3]} from={T.altitudeWord - 0.1} to={T.myth + 0.2} label="35,000 FT" sub="ALTITUDE" size={44} />
       <FloatingBadge
         position={[-2.4, 4.9, 0.5]}
         target={[-2.3, 3.9, -0.2]}
-        from={T.myth + 2.4}
+        from={T.tanks - 0.1}
         to={T.reveal - 0.3}
         label="NO OXYGEN TANKS"
         icon="❌"
@@ -47,8 +47,8 @@ const Scene: React.FC = () => (
       <FloatingBadge
         position={[0.3, 4.55, 0.4]}
         target={[CAN.x, CAN.base + 1.0, 0.3]}
-        from={T.reveal + 1.9}
-        to={T.mechanism - 0.6}
+        from={T.generator - 0.05}
+        to={T.mechanism - 0.2}
         label="CHEMICAL OXYGEN"
         sub="GENERATOR"
         size={38}
@@ -56,8 +56,8 @@ const Scene: React.FC = () => (
       <FloatingBadge
         position={[0.3, 4.0, 0.5]}
         target={[CAN.x, CAN.base + 0.4, 0.2]}
-        from={T.mechanism + 3.2}
-        to={T.reaction - 0.15}
+        from={T.chemicals - 0.1}
+        to={T.reaction - 0.1}
         label="Sodium Chlorate (NaClO₃)"
         sub="+ Iron (Fe)"
         size={32}
@@ -66,8 +66,8 @@ const Scene: React.FC = () => (
       <FloatingBadge
         position={[1.0, 3.55, 0.4]}
         target={[CAN.x + 0.1, CAN.base + 0.4, 0.3]}
-        from={T.reaction + 0.2}
-        to={T.reaction + 3.3}
+        from={T.heat - 0.1}
+        to={T.heat + 3.2}
         label="450°C"
         sub="REACTION HEAT"
         size={26}
@@ -77,8 +77,8 @@ const Scene: React.FC = () => (
       <FloatingBadge
         position={[1.15, 0.2, 0.3]}
         target={[0.4, 1.2, 0.2]}
-        from={T.reaction + 4.8}
-        to={T.outro - 0.2}
+        from={T.minutes - 0.1}
+        to={T.outro - 0.1}
         label="15 MINUTES"
         sub="OXYGEN SUPPLY"
         size={28}
@@ -90,7 +90,7 @@ const Scene: React.FC = () => (
 const Outro: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const f0 = sec(T.outro + 1.6);
+  const f0 = sec(T.follow - 0.2);
   if (frame < f0) return null;
   const a = interpolate(frame - f0, [0, 18], [0, 1], { extrapolateRight: "clamp" });
   const s = spring({ frame: frame - f0, fps, config: { damping: 14 } });

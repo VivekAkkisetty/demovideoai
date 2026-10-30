@@ -1,0 +1,594 @@
+{
+ "words": [
+  {
+   "text": "Flight",
+   "start": 1.765,
+   "end": 2.005
+  },
+  {
+   "text": "35,000",
+   "start": 1.765,
+   "end": 2.435
+  },
+  {
+   "text": "feet",
+   "start": 2.435,
+   "end": 2.575
+  },
+  {
+   "text": "height",
+   "start": 2.575,
+   "end": 2.815
+  },
+  {
+   "text": "lo",
+   "start": 2.815,
+   "end": 3.055
+  },
+  {
+   "text": "unnappudu,",
+   "start": 3.055,
+   "end": 3.985
+  },
+  {
+   "text": "sudden",
+   "start": 4.075,
+   "end": 4.205
+  },
+  {
+   "text": "ga",
+   "start": 4.205,
+   "end": 4.335
+  },
+  {
+   "text": "mee",
+   "start": 4.335,
+   "end": 4.475
+  },
+  {
+   "text": "mundhu",
+   "start": 4.475,
+   "end": 4.785
+  },
+  {
+   "text": "ee",
+   "start": 4.785,
+   "end": 5.075
+  },
+  {
+   "text": "yellow",
+   "start": 5.075,
+   "end": 5.485
+  },
+  {
+   "text": "oxygen",
+   "start": 5.485,
+   "end": 6.045
+  },
+  {
+   "text": "masks",
+   "start": 6.045,
+   "end": 6.165
+  },
+  {
+   "text": "drop",
+   "start": 6.165,
+   "end": 6.335
+  },
+  {
+   "text": "aythe...",
+   "start": 6.335,
+   "end": 6.885
+  },
+  {
+   "text": "aa",
+   "start": 7.045,
+   "end": 7.285
+  },
+  {
+   "text": "oxygen",
+   "start": 7.045,
+   "end": 7.285
+  },
+  {
+   "text": "ekkadi",
+   "start": 7.045,
+   "end": 7.285
+  },
+  {
+   "text": "nunchi",
+   "start": 7.045,
+   "end": 7.325
+  },
+  {
+   "text": "vasthundho",
+   "start": 7.325,
+   "end": 7.695
+  },
+  {
+   "text": "meeku",
+   "start": 7.695,
+   "end": 8.165
+  },
+  {
+   "text": "thelusa?",
+   "start": 8.165,
+   "end": 8.975
+  },
+  {
+   "text": "Chala",
+   "start": 9.365,
+   "end": 9.605
+  },
+  {
+   "text": "mandhi",
+   "start": 9.365,
+   "end": 9.555
+  },
+  {
+   "text": "plane",
+   "start": 9.555,
+   "end": 9.855
+  },
+  {
+   "text": "lo",
+   "start": 9.855,
+   "end": 10.045
+  },
+  {
+   "text": "pedda",
+   "start": 10.045,
+   "end": 10.585
+  },
+  {
+   "text": "oxygen",
+   "start": 10.345,
+   "end": 10.485
+  },
+  {
+   "text": "tanks",
+   "start": 10.485,
+   "end": 10.755
+  },
+  {
+   "text": "untayi",
+   "start": 10.755,
+   "end": 11.285
+  },
+  {
+   "text": "anukuntaru.",
+   "start": 11.285,
+   "end": 12.315
+  },
+  {
+   "text": "Kaani",
+   "start": 12.405,
+   "end": 12.645
+  },
+  {
+   "text": "fact",
+   "start": 12.495,
+   "end": 12.725
+  },
+  {
+   "text": "enti",
+   "start": 12.725,
+   "end": 13.045
+  },
+  {
+   "text": "ante...",
+   "start": 13.045,
+   "end": 13.635
+  },
+  {
+   "text": "plane",
+   "start": 13.655,
+   "end": 13.895
+  },
+  {
+   "text": "lo",
+   "start": 13.655,
+   "end": 13.895
+  },
+  {
+   "text": "asalu",
+   "start": 13.655,
+   "end": 13.845
+  },
+  {
+   "text": "oxygen",
+   "start": 13.845,
+   "end": 14.305
+  },
+  {
+   "text": "cylinders",
+   "start": 14.305,
+   "end": 14.865
+  },
+  {
+   "text": "eh",
+   "start": 14.695,
+   "end": 14.835
+  },
+  {
+   "text": "undavu!",
+   "start": 14.835,
+   "end": 15.615
+  },
+  {
+   "text": "Mee",
+   "start": 15.995,
+   "end": 16.235
+  },
+  {
+   "text": "seat",
+   "start": 15.995,
+   "end": 16.235
+  },
+  {
+   "text": "paina",
+   "start": 15.995,
+   "end": 16.365
+  },
+  {
+   "text": "unna",
+   "start": 16.365,
+   "end": 16.675
+  },
+  {
+   "text": "panel",
+   "start": 16.675,
+   "end": 17.015
+  },
+  {
+   "text": "lo",
+   "start": 16.775,
+   "end": 16.965
+  },
+  {
+   "text": "oka",
+   "start": 16.965,
+   "end": 17.255
+  },
+  {
+   "text": "chinna",
+   "start": 17.255,
+   "end": 17.805
+  },
+  {
+   "text": "metal",
+   "start": 17.825,
+   "end": 18.095
+  },
+  {
+   "text": "canister",
+   "start": 18.095,
+   "end": 18.595
+  },
+  {
+   "text": "untundi.",
+   "start": 18.595,
+   "end": 19.375
+  },
+  {
+   "text": "Dheenine",
+   "start": 19.625,
+   "end": 19.865
+  },
+  {
+   "text": "'Chemical",
+   "start": 19.625,
+   "end": 20.285
+  },
+  {
+   "text": "Oxygen",
+   "start": 20.135,
+   "end": 20.545
+  },
+  {
+   "text": "Generator'",
+   "start": 20.545,
+   "end": 21.065
+  },
+  {
+   "text": "antaru.",
+   "start": 21.065,
+   "end": 21.825
+  },
+  {
+   "text": "Mask",
+   "start": 22.235,
+   "end": 22.475
+  },
+  {
+   "text": "ni",
+   "start": 22.235,
+   "end": 22.475
+  },
+  {
+   "text": "meeru",
+   "start": 22.235,
+   "end": 22.415
+  },
+  {
+   "text": "kindhaki",
+   "start": 22.415,
+   "end": 22.895
+  },
+  {
+   "text": "laaginappudu,",
+   "start": 22.735,
+   "end": 23.915
+  },
+  {
+   "text": "oka",
+   "start": 23.915,
+   "end": 24.035
+  },
+  {
+   "text": "firing",
+   "start": 24.025,
+   "end": 24.545
+  },
+  {
+   "text": "pin",
+   "start": 24.545,
+   "end": 24.665
+  },
+  {
+   "text": "release",
+   "start": 24.665,
+   "end": 25.125
+  },
+  {
+   "text": "ayyi,",
+   "start": 25.125,
+   "end": 25.495
+  },
+  {
+   "text": "canister",
+   "start": 25.555,
+   "end": 25.725
+  },
+  {
+   "text": "loni",
+   "start": 25.725,
+   "end": 26.025
+  },
+  {
+   "text": "Sodium",
+   "start": 26.025,
+   "end": 26.655
+  },
+  {
+   "text": "Chlorate",
+   "start": 26.655,
+   "end": 27.035
+  },
+  {
+   "text": "and",
+   "start": 27.035,
+   "end": 27.405
+  },
+  {
+   "text": "Iron",
+   "start": 27.505,
+   "end": 27.905
+  },
+  {
+   "text": "ni",
+   "start": 27.905,
+   "end": 28.135
+  },
+  {
+   "text": "ignite",
+   "start": 28.135,
+   "end": 28.515
+  },
+  {
+   "text": "chesthundi.",
+   "start": 28.515,
+   "end": 29.225
+  },
+  {
+   "text": "Aa",
+   "start": 29.485,
+   "end": 29.725
+  },
+  {
+   "text": "chemical",
+   "start": 29.485,
+   "end": 29.725
+  },
+  {
+   "text": "reaction",
+   "start": 29.485,
+   "end": 29.875
+  },
+  {
+   "text": "valla",
+   "start": 29.875,
+   "end": 30.315
+  },
+  {
+   "text": "450",
+   "start": 30.315,
+   "end": 31.265
+  },
+  {
+   "text": "degree",
+   "start": 31.265,
+   "end": 31.525
+  },
+  {
+   "text": "Celsius",
+   "start": 31.525,
+   "end": 32.085
+  },
+  {
+   "text": "heat",
+   "start": 32.085,
+   "end": 32.315
+  },
+  {
+   "text": "tho",
+   "start": 32.315,
+   "end": 32.475
+  },
+  {
+   "text": "paatu",
+   "start": 32.475,
+   "end": 33.025
+  },
+  {
+   "text": "pure",
+   "start": 33.185,
+   "end": 33.305
+  },
+  {
+   "text": "oxygen",
+   "start": 33.295,
+   "end": 33.785
+  },
+  {
+   "text": "gas",
+   "start": 33.785,
+   "end": 34.025
+  },
+  {
+   "text": "produce",
+   "start": 33.845,
+   "end": 34.155
+  },
+  {
+   "text": "avtundi.",
+   "start": 34.155,
+   "end": 35.005
+  },
+  {
+   "text": "Idi",
+   "start": 35.125,
+   "end": 35.365
+  },
+  {
+   "text": "meeku",
+   "start": 35.125,
+   "end": 35.365
+  },
+  {
+   "text": "sarigga",
+   "start": 35.205,
+   "end": 35.565
+  },
+  {
+   "text": "15",
+   "start": 35.565,
+   "end": 35.785
+  },
+  {
+   "text": "minutes",
+   "start": 35.785,
+   "end": 36.435
+  },
+  {
+   "text": "oxygen",
+   "start": 36.435,
+   "end": 36.955
+  },
+  {
+   "text": "istundi.",
+   "start": 36.955,
+   "end": 37.685
+  },
+  {
+   "text": "Ee",
+   "start": 37.765,
+   "end": 38.005
+  },
+  {
+   "text": "15",
+   "start": 37.765,
+   "end": 38.065
+  },
+  {
+   "text": "minutes",
+   "start": 38.065,
+   "end": 38.555
+  },
+  {
+   "text": "lo",
+   "start": 38.555,
+   "end": 38.925
+  },
+  {
+   "text": "pilot",
+   "start": 39.045,
+   "end": 39.365
+  },
+  {
+   "text": "flight",
+   "start": 39.365,
+   "end": 39.605
+  },
+  {
+   "text": "ni",
+   "start": 39.415,
+   "end": 39.615
+  },
+  {
+   "text": "safe",
+   "start": 39.615,
+   "end": 40.195
+  },
+  {
+   "text": "altitude",
+   "start": 40.195,
+   "end": 40.565
+  },
+  {
+   "text": "ki",
+   "start": 40.565,
+   "end": 40.755
+  },
+  {
+   "text": "theesukostharu!",
+   "start": 40.755,
+   "end": 41.785
+  },
+  {
+   "text": "Inka",
+   "start": 41.945,
+   "end": 42.185
+  },
+  {
+   "text": "ilanti",
+   "start": 41.945,
+   "end": 42.255
+  },
+  {
+   "text": "engineering",
+   "start": 42.255,
+   "end": 43.115
+  },
+  {
+   "text": "facts",
+   "start": 43.115,
+   "end": 43.255
+  },
+  {
+   "text": "kosam,",
+   "start": 43.255,
+   "end": 43.765
+  },
+  {
+   "text": "follow",
+   "start": 43.845,
+   "end": 44.095
+  },
+  {
+   "text": "cheyyandi.",
+   "start": 44.095,
+   "end": 44.755
+  }
+ ]
+}

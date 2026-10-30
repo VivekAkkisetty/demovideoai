@@ -9,6 +9,7 @@
     "build:undersea": "remotion render src/index.ts UnderseaBridgeDemo out/undersea-bridge.mp4",
     "still": "remotion still src/index.ts AirplaneOxygen out/still.png --frame=300",
     "prep:audio": "node scripts/prep-audio.mjs",
+    "align:captions": "python3 scripts/align-captions.py",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

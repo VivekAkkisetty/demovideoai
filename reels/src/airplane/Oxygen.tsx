@@ -230,8 +230,8 @@ const Canister: React.FC<{ t: number; glow: number }> = ({ t, glow }) => {
 const GhostTank: React.FC<{ t: number }> = ({ t }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const inK = ramp(t, T.myth + 1.2, T.myth + 2.2);
-  const xK = spring({ frame: frame - sec(T.myth + 3.4), fps, config: { damping: 9, stiffness: 140 } });
+  const inK = ramp(t, T.tanks - 0.5, T.tanks + 0.4);
+  const xK = spring({ frame: frame - sec(T.strike), fps, config: { damping: 9, stiffness: 140 } });
   const gone = ramp(t, T.reveal - 0.6, T.reveal + 0.2);
   const o = inK * (1 - gone);
   if (o <= 0.01) return null;
@@ -265,14 +265,14 @@ export const OxygenRig: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const t = frame / FPS;
-  const glow = ramp(t, MECH.glowStart, T.reaction + 1.5, Easing.out(Easing.quad)) * (0.65 + 0.35 * ramp(t, T.reaction, T.reaction + 1.5));
+  const glow = ramp(t, MECH.glowStart, T.heat + 1.5, Easing.out(Easing.quad)) * (0.65 + 0.35 * ramp(t, T.reaction, T.heat + 1.5));
   const { pos, theta } = maskPosition(t, fps);
   const pts = useMemo(() => tubePoints(t, fps), [t, fps]);
   const tubeGeo = useMemo(
     () => new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 140, 0.032, 6, false),
     [pts],
   );
-  const flowStart = T.reaction;
+  const flowStart = T.flow;
   const flowCurve = useMemo(
     () =>
       new THREE.CatmullRomCurve3([
