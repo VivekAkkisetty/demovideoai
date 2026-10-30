@@ -1,0 +1,65 @@
+{
+ "title": "Switch ON chesthe light ela vastundi?",
+ "lines": [
+  {
+   "id": "hook",
+   "start": 0.45,
+   "roman": "Switch *on* chesthe, light ela vastundi?",
+   "te": "స్విచ్ ఆన్ చేస్తే, లైట్ ఎలా వస్తుంది?"
+  },
+  {
+   "id": "mine",
+   "start": 4.7,
+   "roman": "Ee katha *coal* mine lo modalavtundi.",
+   "te": "ఈ కథ కోల్ మైన్ లో మొదలవుతుంది."
+  },
+  {
+   "id": "train",
+   "start": 8.9,
+   "roman": "Coal ni *power plant* ki train lo teesukelthaaru.",
+   "te": "కోల్ ని పవర్ ప్లాంట్ కి ట్రైన్ లో తీసుకెళ్తారు."
+  },
+  {
+   "id": "boiler",
+   "start": 13.3,
+   "roman": "Akkada boiler lo *burn* chesthe steam vastundi.",
+   "te": "అక్కడ బాయిలర్ లో బర్న్ చేస్తే స్టీమ్ వస్తుంది."
+  },
+  {
+   "id": "turbine",
+   "start": 17.0,
+   "roman": "Aa steam *turbine* ni tiripisthe, current puttundi.",
+   "te": "ఆ స్టీమ్ టర్బైన్ ని తిప్పితే, కరెంట్ పుడుతుంది."
+  },
+  {
+   "id": "grid",
+   "start": 21.3,
+   "roman": "Taruvata *high voltage* lines lo, ooru varaku.",
+   "te": "తర్వాత హై వోల్టేజ్ లైన్స్ లో, ఊరు వరకు."
+  },
+  {
+   "id": "sub",
+   "start": 26.4,
+   "roman": "Substation lo voltage *taggistharu*.",
+   "te": "సబ్ స్టేషన్ లో వోల్టేజ్ తగ్గిస్తారు."
+  },
+  {
+   "id": "home",
+   "start": 30.9,
+   "roman": "Chivariki transformer nunchi mee *intiki*, 230 volts.",
+   "te": "చివరికి ట్రాన్స్ఫార్మర్ నుంచి మీ ఇంటికి, రెండు వందల ముప్పై వోల్ట్స్."
+  },
+  {
+   "id": "weak",
+   "start": 36.7,
+   "roman": "Ee chain lo oka link weak ayithe, power *cut*.",
+   "te": "ఈ చైన్ లో ఒక లింక్ వీక్ అయితే, పవర్ కట్."
+  },
+  {
+   "id": "outro",
+   "start": 40.95,
+   "roman": "Inka ilanti *explainers* kosam, follow cheyyandi.",
+   "te": "ఇంకా ఇలాంటి ఎక్స్‌ప్లెయినర్స్ కోసం, ఫాలో చెయ్యండి."
+  }
+ ]
+}

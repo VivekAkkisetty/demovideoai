@@ -7,18 +7,19 @@ clip duration in proportion to word length (no forced aligner is available
 offline). To use a real voice instead, drop per-line WAVs into build/vo/<id>.wav
 and re-run: they take precedence over espeak output.
 """
-import json, re, subprocess, wave, sys
+import json, os, re, subprocess, wave, sys
 from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parent.parent
-BUILD = ROOT / "build"; VO = BUILD / "vo"; OUT = ROOT / "out"
+REEL = os.environ.get("REEL", "")
+BUILD = ROOT / "build" / REEL if REEL else ROOT / "build"; VO = BUILD / "vo"; OUT = ROOT / "out"
 for d in (BUILD, VO, OUT): d.mkdir(exist_ok=True)
 SR = 22050
 TOTAL = 45.0
 SPEED = int(sys.argv[1]) if len(sys.argv) > 1 else 150
 
-script = json.loads((ROOT / "src/script.json").read_text())["lines"]
+script = json.loads(((ROOT / "src" / REEL / "script.json") if REEL else (ROOT / "src/script.json")).read_text())["lines"]
 
 def read_wav(p):
     with wave.open(str(p)) as w:
@@ -99,5 +100,5 @@ def ts(x):
 srt = []
 for n, c in enumerate(flat, 1):
     srt.append(f"{n}\n{ts(c['show0'])} --> {ts(c['show1'])}\n{' '.join(w['text'] for w in c['words'])}\n")
-(OUT / "subtitles.srt").write_text("\n".join(srt), encoding="utf-8")
+(OUT / (f"{REEL}-subtitles.srt" if REEL else "subtitles.srt")).write_text("\n".join(srt), encoding="utf-8")
 print("wrote build/timing.json, build/voiceover_22k.wav, out/subtitles.srt")

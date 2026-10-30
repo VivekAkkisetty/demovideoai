@@ -21,7 +21,7 @@ const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=sw
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 page.on('console', m => { if (m.type() === 'error') console.error('[page]', m.text()); });
 page.on('pageerror', e => console.error('[pageerror]', e.message));
-await page.goto(`http://127.0.0.1:${server.address().port}/src/index.html`);
+await page.goto(`http://127.0.0.1:${server.address().port}/${process.env.PAGE || 'src/index.html'}`);
 await page.evaluate(() => window.__ready);
 const t0 = Date.now();
 for (let f = +a; f < +b; f++) {

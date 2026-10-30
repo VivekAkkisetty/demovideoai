@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Switch ON chesthe light ela vastundi?</title>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<style>
+  @font-face { font-family: 'Poppins'; font-weight: 800; src: url('/node_modules/@fontsource/poppins/files/poppins-latin-800-normal.woff2') format('woff2'); }
+  @font-face { font-family: 'Poppins'; font-weight: 600; src: url('/node_modules/@fontsource/poppins/files/poppins-latin-600-normal.woff2') format('woff2'); }
+  :root { --ember: #FF7A2F; --volt: #7FE3FF; --bulb: #FFD58A; --ink: #0E2A33; }
+  html, body { margin: 0; background: #07161B; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Poppins', sans-serif; color: #fff; }
+  canvas { position: absolute; inset: 0; }
+  .ov { position: absolute; inset: 0; pointer-events: none; }
+  #speed { opacity: 0; mix-blend-mode: screen;
+    background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0) 0deg, rgba(190,235,255,.85) .35deg, rgba(255,255,255,0) 1.1deg 2.7deg);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, transparent 14%, #000 62%); mask-image: radial-gradient(ellipse at 50% 50%, transparent 14%, #000 62%); }
+  #speed2 { opacity: 0; mix-blend-mode: screen; transform: rotate(1.3deg);
+    background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0) 0deg, rgba(255,190,120,.6) .25deg, rgba(255,255,255,0) .8deg 1.9deg);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 50%, transparent 24%, #000 70%); mask-image: radial-gradient(ellipse at 50% 50%, transparent 24%, #000 70%); }
+  #flash { background: #fff; opacity: 0; }
+  #lines { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+  /* progress tracker */
+  #hud { position: absolute; left: 90px; width: 900px; top: 132px; height: 120px; opacity: 0; }
+  #hud .rail { position: absolute; left: 28px; right: 28px; top: 26px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.22); }
+  #hud .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: 3px; background: linear-gradient(90deg, var(--ember), var(--volt) 55%, var(--bulb)); box-shadow: 0 0 14px rgba(127,227,255,.8); }
+  #hud .node { position: absolute; top: 0; width: 58px; height: 58px; margin-left: -29px; border-radius: 50%; background: rgba(10,34,42,.78); border: 3px solid rgba(255,255,255,.35); display: flex; align-items: center; justify-content: center; }
+  #hud .node svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: .75; }
+  #hud .node.on { border-color: var(--volt); box-shadow: 0 0 22px rgba(127,227,255,.85); }
+  #hud .node.on svg { opacity: 1; stroke: #fff; }
+  #hud .node.ember.on { border-color: var(--ember); box-shadow: 0 0 22px rgba(255,122,47,.85); }
+  #hud .node.warm.on { border-color: var(--bulb); box-shadow: 0 0 22px rgba(255,213,138,.85); }
+  #hud .lab { position: absolute; top: 68px; width: 130px; margin-left: -65px; text-align: center; font-weight: 600; font-size: 21px; letter-spacing: .3px; opacity: .8; text-shadow: 0 2px 6px rgba(0,0,0,.7); }
+  /* voltage readout */
+  #volt { position: absolute; left: 50%; top: 292px; transform: translateX(-50%); text-align: center; opacity: 0; }
+  #volt .val { font-weight: 800; font-size: 112px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--volt); text-shadow: 0 0 26px rgba(127,227,255,.75), 0 4px 10px rgba(0,0,0,.55); -webkit-text-stroke: 5px rgba(7,22,27,.6); paint-order: stroke fill; }
+  #volt .cap { margin-top: 2px; font-weight: 600; font-size: 28px; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.8); -webkit-text-stroke: 4px rgba(7,22,27,.55); paint-order: stroke fill; }
+  /* callout tags */
+  .tag { position: absolute; transform: translate(-50%, -100%); opacity: 0; white-space: nowrap; padding: 12px 26px 12px 22px; border-radius: 16px; background: rgba(8,28,34,.74); border-left: 8px solid var(--c, #7FE3FF); box-shadow: 0 8px 26px rgba(0,0,0,.45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .tag .m { font-weight: 800; font-size: 44px; line-height: 1.05; letter-spacing: .5px; }
+  .tag .s { font-weight: 600; font-size: 26px; line-height: 1.2; color: var(--c, #7FE3FF); filter: brightness(1.15); }
+  /* subtitles */
+  #subs { position: absolute; left: 80px; width: 920px; top: 1552px; height: 170px; display: flex; align-items: center; justify-content: center; text-align: center; }
+  #subs .line { font-weight: 800; font-size: 66px; line-height: 1.16; color: #fff; text-shadow: 0 4px 8px rgba(5,22,27,.6); -webkit-text-stroke: 10px rgba(5,24,30,.78); paint-order: stroke fill; }
+  #subs .w { display: inline-block; opacity: 0; transform-origin: 50% 80%; }
+  #subs .w.key.on { color: #FF9933; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="ov" id="speed"></div><div class="ov" id="speed2"></div>
+  <svg id="lines" viewBox="0 0 1080 1920"></svg>
+  <div id="callouts"></div>
+  <div id="hud"></div>
+  <div id="volt"><div class="val" id="voltVal">11 kV</div><div class="cap" id="voltCap"></div></div>
+  <div id="subs"><div class="line" id="subline"></div></div>
+  <div class="ov" id="flash"></div>
+</div>
+<script type="module" src="/src/power/main.js"></script>
+</body>
+</html>
