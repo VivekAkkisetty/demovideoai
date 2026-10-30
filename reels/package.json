@@ -1,0 +1,32 @@
+{
+  "name": "reels",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion + React Three Fiber pipeline for 9:16 low-poly educational reels",
+  "scripts": {
+    "dev": "remotion studio src/index.ts",
+    "build": "remotion render src/index.ts UnderseaBridgeDemo out/undersea-bridge.mp4",
+    "still": "remotion still src/index.ts UnderseaBridgeDemo out/still.png --frame=300",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-telugu": "^5.3.0",
+    "@fontsource/poppins": "^5.1.0",
+    "@react-three/drei": "9.122.0",
+    "@react-three/fiber": "8.18.0",
+    "@remotion/cli": "4.0.539",
+    "@remotion/three": "4.0.539",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.539",
+    "tailwind-merge": "^2.5.5",
+    "three": "0.169.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "@types/three": "0.169.0",
+    "typescript": "5.6.3"
+  }
+}
